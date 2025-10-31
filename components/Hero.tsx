@@ -106,7 +106,7 @@ export function Hero({ onScrollToForm }: HeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-5 justify-center items-center mt-2"
+            className="flex justify-center items-center mt-2"
           >
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Button
@@ -116,18 +116,6 @@ export function Hero({ onScrollToForm }: HeroProps) {
               >
                 Vraag jouw gratis voorstel aan
               </Button>
-            </motion.div>
-            <motion.div 
-              whileHover={{ scale: 1.03 }} 
-              whileTap={{ scale: 0.97 }}
-            >
-              <button
-                onClick={onScrollToForm}
-                className="px-10 py-7 text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-2 group rounded-full hover:bg-blue-50/50"
-              >
-                <span>Meer informatie</span>
-                <ArrowDown className="h-5 w-5 group-hover:translate-y-0.5 transition-transform duration-300" />
-              </button>
             </motion.div>
           </motion.div>
         </motion.div>
