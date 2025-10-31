@@ -78,38 +78,40 @@ export function ContactForm() {
   }
 
   return (
-    <section id="aanvraag" className="py-20 sm:py-24 lg:py-32 bg-gray-50">
+    <section id="aanvraag" className="py-32 sm:py-40 lg:py-48 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-gray-900 mb-6 tracking-tight">
             Start jouw project
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto font-light">
             Vul het formulier in en ontvang binnen 24 uur een eerste conceptvoorstel
           </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-2xl mx-auto"
         >
-          <Card className="border-2">
-            <CardHeader>
-              <CardTitle>Projectaanvraag</CardTitle>
-              <CardDescription>
+          <Card className="border border-gray-200/60 shadow-xl rounded-3xl overflow-hidden">
+            <CardHeader className="p-10 pb-6">
+              <CardTitle className="text-3xl font-semibold tracking-tight mb-3">
+                Projectaanvraag
+              </CardTitle>
+              <CardDescription className="text-base text-gray-600">
                 Vertel ons over jouw project en wij maken een op maat gemaakt voorstel
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-10 pt-6">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="projectType">Type project *</Label>
@@ -247,14 +249,16 @@ export function ContactForm() {
                   </motion.div>
                 )}
 
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-6 text-lg rounded-full"
-                >
-                  {isSubmitting ? "Verzenden..." : "Verstuur aanvraag"}
-                </Button>
+                <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={isSubmitting}
+                    className="w-full bg-gray-900 hover:bg-gray-800 text-white py-7 text-base rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+                  >
+                    {isSubmitting ? "Verzenden..." : "Verstuur aanvraag"}
+                  </Button>
+                </motion.div>
               </form>
             </CardContent>
           </Card>

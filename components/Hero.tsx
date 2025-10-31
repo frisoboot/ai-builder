@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowDown } from "lucide-react"
+import { ArrowDown, Sparkles } from "lucide-react"
 
 interface HeroProps {
   onScrollToForm: () => void
@@ -10,77 +10,125 @@ interface HeroProps {
 
 export function Hero({ onScrollToForm }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
-      {/* Animated gradient background */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+      {/* Subtle animated gradient background */}
       <div className="absolute inset-0">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#6366F1] via-[#9333EA] to-[#EC4899]"
+          className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20"
           animate={{
-            backgroundPosition: ["0% 0%", "100% 100%"],
+            opacity: [1, 1.1, 1],
           }}
           transition={{
-            duration: 10,
+            duration: 8,
             repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          style={{
-            backgroundSize: "200% 200%",
+            ease: "easeInOut",
           }}
         />
-        <div className="absolute inset-0 bg-black/20" />
+        {/* Floating particles effect */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto"
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-5xl mx-auto"
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50/80 backdrop-blur-sm border border-blue-100/50 mb-8"
           >
-            Wij bouwen jouw website of app met AI{" "}
-            <span className="block mt-2">— binnen 48 uur een MVP.</span>
+            <Sparkles className="h-4 w-4 text-blue-600" />
+            <span className="text-sm font-medium text-blue-700">AI-Powered Development</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold text-gray-900 mb-8 leading-[1.1] tracking-tight"
+          >
+            Wij bouwen jouw website{" "}
+            <span className="block mt-3 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              of app met AI
+            </span>
+            <span className="block mt-3 text-gray-700">— binnen 48 uur een MVP.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl sm:text-2xl text-white/90 mb-8 font-medium"
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="text-xl sm:text-2xl text-gray-600 mb-12 font-light max-w-2xl mx-auto leading-relaxed"
           >
-            Betaal pas als je tevreden bent. No Cure, No Pay.
+            Betaal pas als je tevreden bent.{" "}
+            <span className="font-medium text-gray-900">No Cure, No Pay.</span>
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Button
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                onClick={onScrollToForm}
+                size="lg"
+                className="bg-gray-900 hover:bg-gray-800 text-white text-base px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+              >
+                Vraag jouw gratis voorstel aan
+                <ArrowDown className="ml-2 h-4 w-4" />
+              </Button>
+            </motion.div>
+            <motion.button
               onClick={onScrollToForm}
-              size="lg"
-              className="bg-white text-purple-600 hover:bg-white/90 text-lg px-8 py-6 rounded-full shadow-xl hover:scale-105 transition-transform"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="text-gray-600 hover:text-gray-900 text-base font-medium transition-colors flex items-center gap-2 group"
             >
-              Vraag jouw gratis voorstel aan
-              <ArrowDown className="ml-2 h-5 w-5" />
-            </Button>
+              <span>Meer informatie</span>
+              <ArrowDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
+            </motion.button>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Smooth scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10"
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
-        <ArrowDown className="h-6 w-6 text-white/70" />
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs text-gray-400 font-medium tracking-wider">SCROLL</span>
+          <ArrowDown className="h-5 w-5 text-gray-400" />
+        </div>
       </motion.div>
     </section>
   )

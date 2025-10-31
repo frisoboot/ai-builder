@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 import { FileText, Zap, Rocket, CheckCircle2 } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
 
 const steps = [
   {
@@ -37,61 +36,77 @@ const steps = [
 
 export function Steps() {
   return (
-    <section className="py-20 sm:py-24 lg:py-32 bg-white">
+    <section className="py-32 sm:py-40 lg:py-48 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-24"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-gray-900 mb-6 tracking-tight">
             Hoe het werkt
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto font-light">
             In vier eenvoudige stappen naar jouw werkende MVP
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-24">
           {steps.map((step, index) => {
             const Icon = step.icon
             return (
               <motion.div
                 key={step.number}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow border-2 hover:border-purple-200">
-                  <CardContent className="p-6 text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-white text-2xl font-bold mb-4">
-                      {step.number}
+                <motion.div
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="h-full p-8 rounded-3xl bg-white border border-gray-200/60 hover:border-gray-300 hover:shadow-xl transition-all duration-500 group"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className="relative mb-6"
+                    >
+                      <div className="absolute inset-0 bg-blue-100 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+                      <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-xl font-semibold shadow-lg">
+                        {step.number}
+                      </div>
+                    </motion.div>
+                    <div className="mb-6 p-3 rounded-2xl bg-gray-50 group-hover:bg-blue-50 transition-colors duration-300">
+                      <Icon className="h-7 w-7 text-blue-600" />
                     </div>
-                    <div className="flex justify-center mb-4">
-                      <Icon className="h-8 w-8 text-purple-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 tracking-tight">
                       {step.title}
                     </h3>
-                    <p className="text-gray-600">{step.description}</p>
-                  </CardContent>
-                </Card>
+                    <p className="text-gray-600 leading-relaxed text-[15px]">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
               </motion.div>
             )
           })}
         </div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="text-center"
         >
-          <blockquote className="text-xl sm:text-2xl font-medium text-gray-800 italic max-w-3xl mx-auto">
+          <blockquote className="text-2xl sm:text-3xl font-light text-gray-800 max-w-3xl mx-auto leading-relaxed italic">
             &ldquo;We geloven niet in loze beloftes, alleen in resultaat.&rdquo;
           </blockquote>
         </motion.div>
@@ -99,4 +114,3 @@ export function Steps() {
     </section>
   )
 }
-
