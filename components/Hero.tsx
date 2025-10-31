@@ -106,27 +106,29 @@ export function Hero({ onScrollToForm }: HeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-5 justify-center items-center mt-2"
           >
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Button
                 onClick={onScrollToForm}
                 size="lg"
-                className="bg-gray-900 hover:bg-gray-800 text-white text-base px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+                className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-10 py-7 rounded-full shadow-2xl hover:shadow-blue-200 transition-all duration-500 font-semibold tracking-tight"
               >
                 Vraag jouw gratis voorstel aan
-                <ArrowDown className="ml-2 h-4 w-4" />
               </Button>
             </motion.div>
-            <motion.button
-              onClick={onScrollToForm}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-gray-600 hover:text-gray-900 text-base font-medium transition-colors flex items-center gap-2 group"
+            <motion.div 
+              whileHover={{ scale: 1.03 }} 
+              whileTap={{ scale: 0.97 }}
             >
-              <span>Meer informatie</span>
-              <ArrowDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
-            </motion.button>
+              <button
+                onClick={onScrollToForm}
+                className="px-10 py-7 text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-2 group rounded-full hover:bg-blue-50/50"
+              >
+                <span>Meer informatie</span>
+                <ArrowDown className="h-5 w-5 group-hover:translate-y-0.5 transition-transform duration-300" />
+              </button>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
