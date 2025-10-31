@@ -3,12 +3,24 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowDown, Sparkles } from "lucide-react"
+import { useMemo } from "react"
 
 interface HeroProps {
   onScrollToForm: () => void
 }
 
 export function Hero({ onScrollToForm }: HeroProps) {
+  // Generate particle data once to avoid SSR issues
+  const particles = useMemo(() => {
+    return Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: 3 + Math.random() * 2,
+      delay: Math.random() * 2,
+    }))
+  }, [])
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
       {/* Subtle animated gradient background */}
@@ -25,13 +37,13 @@ export function Hero({ onScrollToForm }: HeroProps) {
           }}
         />
         {/* Floating particles effect */}
-        {[...Array(20)].map((_, i) => (
+        {particles.map((particle) => (
           <motion.div
-            key={i}
+            key={particle.id}
             className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
             }}
             animate={{
               y: [0, -30, 0],
@@ -39,9 +51,9 @@ export function Hero({ onScrollToForm }: HeroProps) {
               scale: [1, 1.5, 1],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: particle.delay,
               ease: "easeInOut",
             }}
           />
