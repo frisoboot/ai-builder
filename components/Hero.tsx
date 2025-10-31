@@ -121,17 +121,6 @@ export function Hero({ onScrollToForm }: HeroProps) {
         </motion.div>
       </div>
 
-      {/* Smooth scroll indicator */}
-      <motion.div
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs text-gray-400 font-medium tracking-wider">SCROLL</span>
-          <ArrowDown className="h-5 w-5 text-gray-400" />
-        </div>
-      </motion.div>
     </section>
   )
 }
