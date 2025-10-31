@@ -92,7 +92,7 @@ export function Steps() {
           className="text-center"
         >
           <blockquote className="text-xl sm:text-2xl font-medium text-gray-800 italic max-w-3xl mx-auto">
-            "We geloven niet in loze beloftes, alleen in resultaat."
+            &ldquo;We geloven niet in loze beloftes, alleen in resultaat.&rdquo;
           </blockquote>
         </motion.div>
       </div>
